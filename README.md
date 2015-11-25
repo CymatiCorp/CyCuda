@@ -31,21 +31,34 @@ In the same properties menu, navigate down to<br>
 "VC++ Directories" and ensure the following directories are included:<br>
 
 Include Directories: <br>
-$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);C:\ProgramData\NVIDIA Corporation\CUDA Samples\v7.5\common\inc\; <BR><BR>
+```
+$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);C:\ProgramData\NVIDIA Corporation\CUDA Samples\v7.5\common\inc\; 
+```
+<BR><BR>
 
 
 <img src='http://cymaticorp.com/cycuda/c3.png' width=80% height=80%></img> <br><br>
 Library Directories:<br>
-$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);C:\ProgramData\NVIDIA Corporation\CUDA Samples\v7.5\common\lib\; <br><br>
+```
+$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);C:\ProgramData\NVIDIA Corporation\CUDA Samples\v7.5\common\lib\; 
+```
+<br><br>
 
 <img src='http://cymaticorp.com/cycuda/c4.png' width=80% height=80%></img> <br><br>
 Navigate to Linker > General > Additional Library Directories:
-%(AdditionalLibraryDirectories);$(CudaToolkitLibDir);$(CUDA_LIB_PATH);C:\ProgramData\NVIDIA Corporation\CUDA Samples\v7.5\common\lib\; <br><br>
+```
+%(AdditionalLibraryDirectories);$(CudaToolkitLibDir);$(CUDA_LIB_PATH);C:\ProgramData\NVIDIA Corporation\CUDA Samples\v7.5\common\lib\; 
+```
+<br><br>
 
 <img src='http://cymaticorp.com/cycuda/c5.png' width=80% height=80%></img> <br>
 Navigate to Linker > Input<br>
 Add "cudart.lib" to the beginning, so it looks like this:<br>
-cudart.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies) <br><br>
+```
+cudart.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies) 
+```
+
+<br><br>
 Apply these settings and press "OK"<br><Br>
 <img src='http://cymaticorp.com/cycuda/b3.png' width=80% height=80%></img> <br>
 Right Click your solution workspace "myDLL"<br>
@@ -160,3 +173,17 @@ Your output should look similar.<br><br>
 Open mIRC and test the DLL. <br>
 with //echo -a $dll(myDLL.dll,cudaCard,$null)<br>
 the DLL will remain loaded until you unload it with /dll -u myDLL.dll<br>
+<br><br><br>
+Note:<br>
+I did have one compile where the "Build Succeeded" however there was no DLL file.<br>
+and my lastbuildstate kept showing up. #v4.0:v110:false <BR>
+
+What I did to reset it was:<br>
+* Remove the .CU file.
+* Add a regular VC++ CPP file.<BR>
+ (using  the same code that was in the .CU) 
+* Compile. 
+* Add a .CU file again (with same code).
+* Compile again (with CPP file)
+* Delete  .CPP file from the project.<BR><br>
+That worked for me. Let me know if you have issues.<BR>
