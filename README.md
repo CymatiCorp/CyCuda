@@ -4,7 +4,11 @@ Cuda for mIRC
 --------------
 
 Create a VC++ DLL in Visual Studio 2012 for mIRC with CUDA<br><br><br>
-
+Requirements:<br>
+* Visual Studio 2012 (Not Community)<br> 
+* CUDA Toolkit v7.5 https://developer.nvidia.com/cuda-toolkit <br> 
+Note: Install VS before CUDA toolkit.
+<br><br>
 <img src='http://cymaticorp.com/cycuda/1.png' width=80% height=80%></img> <br>
 Create New Project File . . . <br><br>
 
