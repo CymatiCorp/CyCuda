@@ -1,6 +1,6 @@
 # CyCuda
 
-Cuda for mIRC
+Cuda (32-bit) for mIRC
 --------------
 
 Create a VC++ DLL in Visual Studio 2012 for mIRC with CUDA<br><br><br>
