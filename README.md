@@ -191,3 +191,9 @@ What I did to reset it was:<br>
 * Compile again (with CPP file)
 * Delete  .CPP file from the project.<BR><br>
 That worked for me. Let me know if you have issues.<BR>
+<br><br>
+Another thing, this is a 32-bit DLL, that means that CUDA has to compile in 32-bit mode.<br>
+I have not tested the extent of the limitations, but from what I have read there are some.<br>
+I tried a 64-bit Compile and mIRC didn't recognize it. I did read that mIRC has been <br>
+porting a lot of its code over in expectations to becoming 64-bit, so perhaps it might not<br>
+be too long before it might be accepted.<br>
