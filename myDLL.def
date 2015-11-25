@@ -1,0 +1,5 @@
+LIBRARY myDLL
+EXPORTS
+cudaCard
+LoadDll
+UnloadDll
