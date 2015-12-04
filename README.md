@@ -197,3 +197,9 @@ I have not tested the extent of the limitations, but from what I have read there
 I tried a 64-bit Compile and mIRC didn't recognize it. I did read that mIRC has been <br>
 porting a lot of its code over in expectations to becoming 64-bit, so perhaps it might not<br>
 be too long before it might be accepted.<br>
+
+```
+Update December 2, 2015
+* Added new code to prevent mIRC from freezing when too many calls are made to it.
+   Simply call the $dll(myDLL,noFreeze) to enable/disable this feature.
+```
