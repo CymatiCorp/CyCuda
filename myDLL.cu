@@ -28,6 +28,9 @@ typedef struct {
 
 mIRCDLL mIRCLink;
 
+//Initialize Variables.
+int noFrozen = 1;       // Prevent mIRC from freezing.
+
 
 void WINAPI LoadDll(LOADINFO * load) {
   mIRCLink.m_hFileMap = CreateFileMapping( INVALID_HANDLE_VALUE, 0, PAGE_READWRITE, 0, 4096, "mIRC" );     
@@ -49,6 +52,15 @@ int WINAPI UnloadDll( int timeout ) {
 }
 
 int __declspec(dllexport) __stdcall cudaCard(HWND mWnd, HWND aWnd, char *data, char *parms, BOOL show, BOOL nopause) {
+    
+    	// Prevents mIRC from Freezing.
+    if (noFrozen == 1) {
+	 MSG msg;
+	 PeekMessage(&msg,NULL,0,0,PM_REMOVE);
+	 TranslateMessage(&msg);
+	 DispatchMessage(&msg);
+	}
+    
     int nDevices;
     string str = "";
 
@@ -62,3 +74,16 @@ int __declspec(dllexport) __stdcall cudaCard(HWND mWnd, HWND aWnd, char *data, c
     strcpy(data, cstr);
   return 3;
 }
+
+// Enable/Disable "No Freeze" Function.
+int __declspec(dllexport) __stdcall noFreeze(HWND mWnd, HWND aWnd, char *data, char *parms, BOOL show, BOOL nopause) {
+ if (noFrozen == 1) {
+  noFrozen = 0;
+  strcpy(data, "disabled");
+ } else {
+  noFrozen = 1;
+  strcpy(data, "enabled");
+ }
+ return 3;
+}
+
